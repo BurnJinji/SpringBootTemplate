@@ -1,2 +1,24 @@
 server:
   port: 8080
+
+# 自定义属性及属性引用
+blog:
+  address: http://blog.burning8393.cn
+  author: burning8393
+  desc: ${blog.author} , ${blog.address}
+  #  随机字符串
+  value: ${random.value}
+  #  随机int
+  number: ${random.int}
+  #  随机long
+  bignumber: ${random.long}
+  #  10以内的随机数
+  test1: ${random.int(10)}
+  #  1-20的随机数
+  test2: ${random.int[1,20]}
+
+config:
+  code: code
+  name: 趔趄的猿
+  hobby[0]: 看电影
+  hobby[1]: 旅游
