@@ -1,6 +1,7 @@
 package com.burning8393.template.controller;
 
 import com.burning8393.template.config.Config;
+import com.burning8393.template.model.DemoReq;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * @author Pang Xiaowei
@@ -52,5 +54,15 @@ public class DemoController {
         log.info("当前在线人数： " + request.getSession().getId() + ": "
                 + request.getSession().getServletContext().getAttribute("count"));
         return "Hello testListenerLogin";
+    }
+
+    @GetMapping("/testExceptionHandler")
+    public String testExceptionHandler() {
+        throw new RuntimeException("testExceptionHandler");
+    }
+
+    @GetMapping("/demo/valid")
+    public String demoValid(@Valid DemoReq req) {
+        return req.getCode() + ", " + req.getName();
     }
 }
