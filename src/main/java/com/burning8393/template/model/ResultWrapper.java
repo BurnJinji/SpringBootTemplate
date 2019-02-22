@@ -28,6 +28,7 @@ public class ResultWrapper {
     /**
      * 结果集
      */
+    @Getter
     private Object data;
 
     public ResultWrapper(Integer code, String msg) {

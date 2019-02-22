@@ -23,7 +23,32 @@ config:
   name: 趔趄的猿
   hobby[0]: 看电影
   hobby[1]: 旅游
+
+# mybatis
+# 对应实体类的包名
+mybatis:
+  type-aliases-package: com.burning8393.template.biz.entity
+  mapper-locations: classpath:mapper/**/*.xml
 spring:
+  #mysql数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/template?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true
+    username: root
+    password: <xkD!mw#3q,
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initial-size: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
   redis:
     # Redis数据库索引（默认为0）
     database: 0
