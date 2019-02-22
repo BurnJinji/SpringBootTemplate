@@ -8,9 +8,9 @@ import java.util.List;
 
 /**
  * @author Pang Xiaowei
- * @title: Config
+ * @title Config
  * @projectName template
- * @description: config
+ * @description config
  * @date 2019-02-2023:20
  */
 

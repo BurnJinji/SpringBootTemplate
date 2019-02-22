@@ -1,4 +1,4 @@
-package com.burning8393.template.common.interceptor;
+package com.burning8393.template.common.filter;
 
 
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.burning8393.template.config.normal;
 
-import com.burning8393.template.common.filter.CountListener;
+import com.burning8393.template.common.listener.CountListener;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.burning8393.template.common.listener;
+package com.burning8393.template.common.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

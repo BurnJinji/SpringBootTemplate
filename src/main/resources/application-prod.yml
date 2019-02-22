@@ -23,3 +23,6 @@ config:
   name: 趔趄的猿
   hobby[0]: 看电影
   hobby[1]: 旅游
+
+swagger:
+  enabled: false

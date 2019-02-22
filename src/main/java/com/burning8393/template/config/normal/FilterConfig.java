@@ -1,6 +1,6 @@
 package com.burning8393.template.config.normal;
 
-import com.burning8393.template.common.interceptor.CustomFilter;
+import com.burning8393.template.common.filter.CustomFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
