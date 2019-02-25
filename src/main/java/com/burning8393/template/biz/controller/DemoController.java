@@ -76,4 +76,9 @@ public class DemoController {
         return "消息： " + msg + "，已发送";
     }
 
+    @GetMapping("/mock")
+    public String mock(String msg) {
+        return msg;
+    }
+
 }
