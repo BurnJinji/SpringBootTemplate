@@ -27,10 +27,10 @@ config:
 spring:
   #mysql数据库配置
   datasource:
-    url: jdbc:mysql://localhost:3306/template?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/template?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&serverTimezone=UTC
     username: root
     password: <xkD!mw#3q,
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     filters: stat
     maxActive: 20
     initial-size: 1

@@ -1,7 +1,7 @@
 package com.burning8393.template.controller;
 
 import com.burning8393.template.config.Config;
-import com.burning8393.template.model.DemoReq;
+import com.burning8393.template.model.query.DemoReq;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

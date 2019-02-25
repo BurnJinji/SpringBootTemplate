@@ -10,7 +10,7 @@ import lombok.Setter;
  * @date : 2019/2/21 14:44
  * @description :
  */
-public class ResultWrapper {
+public class ResultWrapper<T> {
     /**
      * 返回码
      */
@@ -29,13 +29,13 @@ public class ResultWrapper {
      * 结果集
      */
     @Getter
-    private Object data;
+    private T data;
 
     public ResultWrapper(Integer code, String msg) {
         this(code, msg, null);
     }
 
-    public ResultWrapper(Integer code, String msg, Object result) {
+    public ResultWrapper(Integer code, String msg, T result) {
         this.code = code;
         this.msg = msg;
         this.data = result;

@@ -1,4 +1,4 @@
-package com.burning8393.template.model;
+package com.burning8393.template.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

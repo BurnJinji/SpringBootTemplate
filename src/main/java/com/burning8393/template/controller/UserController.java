@@ -1,15 +1,12 @@
 package com.burning8393.template.controller;
 
 import com.burning8393.template.biz.entity.User;
-import com.burning8393.template.biz.mapper.auto.UserMapper;
+import com.burning8393.template.biz.service.UserService;
 import com.burning8393.template.common.utils.ResultHelper;
 import com.burning8393.template.model.ResultWrapper;
+import com.burning8393.template.model.query.UserQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Pang Xiaowei
@@ -23,11 +20,25 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserMapper userMapper;
+    UserService userService;
 
-    @GetMapping("/all")
-    public ResultWrapper fetchAllUsers() {
-        List<User> users = userMapper.selectByExample(null);
-        return ResultHelper.success(users);
+    @GetMapping("/page/{current}/{size}")
+    public ResultWrapper fetchAllUsers(@PathVariable("current") int current, @PathVariable("size") int size) {
+        return ResultHelper.success(userService.fetchPageUsers(current, size));
+    }
+
+    @GetMapping("/get/{id}")
+    public ResultWrapper<User> fetchOne(@PathVariable("id") Long id) {
+        return ResultHelper.success(userService.fetchOne(id));
+    }
+
+    @PostMapping("/one")
+    public ResultWrapper<Integer> insert(UserQuery query) {
+        return ResultHelper.success(userService.insert(query));
+    }
+
+    @PutMapping("/one")
+    public ResultWrapper<Integer> update(UserQuery query) {
+        return ResultHelper.success(userService.update(query));
     }
 }
