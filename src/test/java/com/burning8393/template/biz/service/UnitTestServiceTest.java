@@ -1,6 +1,9 @@
 package com.burning8393.template.biz.service;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.junit.ContiPerfRule;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,11 @@ public class UnitTestServiceTest {
     @Autowired
     UnitTestService testService;
 
+    @Rule
+    public ContiPerfRule contiPerfRule = new ContiPerfRule();
+
     @Test
+    @PerfTest(invocations = 100, threads = 10)
     public void test() {
         String msg = "this is a test";
         String result = testService.process(msg);
