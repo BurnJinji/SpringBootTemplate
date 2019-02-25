@@ -1,4 +1,4 @@
-package com.burning8393.template.controller;
+package com.burning8393.template.biz.controller;
 
 import com.burning8393.template.biz.entity.User;
 import com.burning8393.template.biz.service.UserService;

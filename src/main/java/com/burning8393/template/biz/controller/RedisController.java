@@ -1,4 +1,4 @@
-package com.burning8393.template.controller;
+package com.burning8393.template.biz.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
