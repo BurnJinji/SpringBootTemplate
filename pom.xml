@@ -85,6 +85,11 @@
             <version>2.3.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -92,6 +97,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.burning8393.template.TemplateApplication</mainClass>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
             <plugin>
                 <!-- Mybatis-generator插件,用于自动生成Mapper和POJO -->
