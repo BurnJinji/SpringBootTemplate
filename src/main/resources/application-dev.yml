@@ -1,6 +1,7 @@
 server:
   port: 8080
-
+  tomcat:
+    uri-encoding: utf-8
 
 # 自定义属性及属性引用
 blog:
@@ -30,6 +31,13 @@ mybatis:
   type-aliases-package: com.burning8393.template.biz.entity
   mapper-locations: classpath:mapper/**/*.xml
 spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  messages:
+    encoding: UTF-8
   #mysql数据库配置
   datasource:
     url: jdbc:mysql://localhost:3306/template?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&serverTimezone=UTC
@@ -75,6 +83,10 @@ spring:
     port: 5672
     username: guest
     password: guest
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 swagger:
   enabled: true

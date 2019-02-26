@@ -45,11 +45,14 @@ public class RedisConfig extends CachingConfigurerSupport {
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory){
         //缓存配置对象
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
-
-        redisCacheConfiguration = redisCacheConfiguration.entryTtl(Duration.ofMinutes(30L)) //设置缓存的默认超时时间：30分钟
-                .disableCachingNullValues()             //如果是空值，不缓存
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer()))         //设置key序列化器
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer((jackson2JsonRedisSerializer())));  //设置value序列化器
+        //设置缓存的默认超时时间：30分钟
+        redisCacheConfiguration = redisCacheConfiguration.entryTtl(Duration.ofMinutes(30L))
+                //如果是空值，不缓存
+                .disableCachingNullValues()
+                //设置key序列化器
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer()))
+                //设置value序列化器
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer((jackson2JsonRedisSerializer())));
 
         return RedisCacheManager
                 .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
