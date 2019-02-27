@@ -1,6 +1,8 @@
 package com.burning8393.template.biz.controller;
 
+import com.burning8393.template.biz.service.SyncService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,9 @@ import java.util.concurrent.*;
 public class AsyncController {
 
     public static ExecutorService FIXED_THREAD_POOL = new ScheduledThreadPoolExecutor(5);
+
+    @Autowired
+    SyncService syncService;
 
     @GetMapping("/callable")
     public Callable<String> callable() {
@@ -61,5 +66,26 @@ public class AsyncController {
         result.onTimeout(() -> "WebAsyncTask超时");
         result.onCompletion(() -> log.info("WebAsyncTask执行结束"));
         return result;
+    }
+
+    @GetMapping("/async")
+    public String doAsync() throws InterruptedException {
+        long start = System.currentTimeMillis();
+        log.info("方法执行开始： {}", start);
+        // 调用同步方法
+        syncService.syncEvent();
+        long syncTime = System.currentTimeMillis();
+        log.info("同步方法用时: {}", syncTime - start);
+        Future<String> doFuture = syncService.asyncEvent();
+        while (true) {
+            if (doFuture.isDone()) {
+                break;
+            }
+            TimeUnit.MILLISECONDS.sleep(100);
+        }
+        long asyncTime = System.currentTimeMillis();
+        log.info("异步方法用时： {}", asyncTime - syncTime);
+        log.info("方法执行完成： {}", asyncTime);
+        return "async!!";
     }
 }

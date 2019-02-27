@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
@@ -23,6 +24,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @description :
  */
 @Configuration
+@EnableAsync
 public class CustomMvcConfig extends WebMvcConfigurationSupport {
 
     @Bean
@@ -41,6 +43,19 @@ public class CustomMvcConfig extends WebMvcConfigurationSupport {
         taskExecutor.setQueueCapacity(25);
         taskExecutor.setKeepAliveSeconds(25);
         taskExecutor.setThreadNamePrefix("callable-");
+        taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        taskExecutor.initialize();
+        return taskExecutor;
+    }
+
+    @Bean(name = "asyncPoolTaskExecutor")
+    public ThreadPoolTaskExecutor getAsyncPoolTaskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(20);
+        taskExecutor.setMaxPoolSize(200);
+        taskExecutor.setQueueCapacity(25);
+        taskExecutor.setKeepAliveSeconds(25);
+        taskExecutor.setThreadNamePrefix("burning-");
         taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         taskExecutor.initialize();
         return taskExecutor;
