@@ -1,5 +1,6 @@
 package com.burning8393.template.biz.controller;
 
+import com.burning8393.template.common.annotation.Log;
 import com.burning8393.template.config.Config;
 import com.burning8393.template.model.query.DemoReq;
 import lombok.extern.slf4j.Slf4j;
@@ -121,6 +122,18 @@ public class DemoController {
         taskScheduler.schedule(() -> log.info("ThreadPoolTaskScheduler定时任务：" + new Date()),
                 new CronTrigger("0/3 * * * * ?"));
         return "ThreadPoolTaskScheduler!";
+    }
+
+    @GetMapping("/aop")
+    @Log(value = "请求了aopDemo的方法")
+    public String aopDemo(String hello) {
+        return "请求参数为： " + hello;
+    }
+
+    @GetMapping("/notaop")
+    @Log(ignore = true)
+    public String notaopDemo(String hello) {
+        return "此方法不记录日志，请求参数为 " + hello;
     }
 
 }
