@@ -15,6 +15,8 @@ public enum  CodeEnums {
     FAILED(-1,"请求失败"),
 
     PARAMS_ERROR(90002, "参数错误"),
+
+    REQUEST_ASYNC_TIMEOUT(90001, "异步请求处理超时"),
     ;
 
 

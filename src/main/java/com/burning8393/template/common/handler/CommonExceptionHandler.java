@@ -1,6 +1,7 @@
 package com.burning8393.template.common.handler;
 
 import com.burning8393.template.common.enums.CodeEnums;
+import com.burning8393.template.common.exception.CustomAsyncRequestTimeoutException;
 import com.burning8393.template.common.utils.ResultHelper;
 import com.burning8393.template.model.ParamValidationResult;
 import com.burning8393.template.model.ResultWrapper;
@@ -40,9 +41,14 @@ public class CommonExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Map<String, Object> exceptionHandler(Exception e) {
         Map<String, Object> result = new HashMap<>();
-        result.put("code", "123");
+        result.put("code", "500");
         result.put("msg", e.getMessage());
         return result;
+    }
+
+    @ExceptionHandler(CustomAsyncRequestTimeoutException.class)
+    public ResultWrapper customAsyncRequestTimeoutExceptionHandler(CustomAsyncRequestTimeoutException e) {
+        return ResultHelper.result(CodeEnums.REQUEST_ASYNC_TIMEOUT);
     }
 
     private List<ParamValidationResult> fillValidationResult(List<FieldError> fieldErrors) {
