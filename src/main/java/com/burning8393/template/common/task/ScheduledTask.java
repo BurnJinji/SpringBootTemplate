@@ -21,7 +21,7 @@ public class ScheduledTask {
      * 自动扫描，启动时间点之后5秒执行一次
      */
     @Async("scheduledPoolTaskExecutor")
-    @Scheduled(fixedRate=5000)
+//    @Scheduled(fixedRate=5000)
     public void getCurrentDate() {
         log.info("Scheduled定时任务执行： " + new Date());
     }
