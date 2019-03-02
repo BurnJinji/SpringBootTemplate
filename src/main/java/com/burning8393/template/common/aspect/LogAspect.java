@@ -66,7 +66,7 @@ public class LogAspect {
         MethodSignature methodSign = (MethodSignature) signature;
         Method method = methodSign.getMethod();
         Log logAnno = AnnotationUtils.getAnnotation(method, Log.class);
-        if (logAnno != null && logAnno.ignore()) {
+        if (logAnno == null || logAnno.ignore()) {
             return object;
         }
         log.info("log注解描述： {}", logAnno.desc());
